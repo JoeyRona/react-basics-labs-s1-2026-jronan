@@ -12,21 +12,16 @@ function App() {
     ]
 });
 
-  {taskState.tasks.map((task) => 
-    <Task 
-      title={task.title}
-      description={task.description}
-      deadline={task.deadline}
-      key={task.id}
-      />
-  )}
-
   return (
     <div className="Container">
       <h1>Tasky</h1>
-      <Task title="Dishes" deadline="Today" description="Clean dishes and put away" />
-      <Task title ="Laundry" deadline="Tomorrow" description="Fold laundry and put away" />
-      <Task title = "Tidy" deadline="Today" description="Tidy house" />
+      {taskState.tasks.map((task) => (
+      <Task
+        title={task.title}
+        description={task.description}
+        deadline={task.deadline}
+        />
+      ))}
     </div>
   );
 }
