@@ -11,7 +11,15 @@ function App() {
       { title: "Tidy up", deadline: "Today" }
     ]
   });
-  
+
+  {taskState.tasks.map((task) => 
+    <Task 
+      title={task.title}
+      description={task.description}
+      deadline={task.deadline}
+      />
+  )}
+
   return (
     <div className="Container">
       <h1>Tasky</h1>
