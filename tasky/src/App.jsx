@@ -7,7 +7,7 @@ function App() {
   const [ taskState, setTaskState ] = useState({
     tasks: [
       { id: 1, title: "Dishes", description: "Empty dishwashers", deadline: "Today", priority: "Low", done: false},
-      { id: 2, title: "Laundry", description: "Fold clothes and put away", deadline: "Tomorrow", priority: "Medium", done:false},
+      { id: 2, title: "Laundry", description: "Fold clothes and put away", deadline: "Tomorrow", priority: "Medium", done: false},
       { id: 3, title: "Tidy up", deadline: "Today", priority: "High", done: false}
     ]
 });
@@ -23,7 +23,7 @@ const doneHandler = (taskIndex) => {
     <div className="Container">
       <h1>Tasky</h1>
 
-      {taskState.tasks.map((task) => (
+      {taskState.tasks.map((task, index) => (
       <Task
         title={task.title}
         description={task.description}
@@ -31,10 +31,10 @@ const doneHandler = (taskIndex) => {
         key={task.id}
         priority={task.priority}
         markDone={() => doneHandler(index)}
+        done={task.done}
+        
         />
       ))}
-
-      <button onClick={props.markDone} className= 'doneButton'>Done</button>
     </div>
   );
 }
