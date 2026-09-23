@@ -19,6 +19,12 @@ const doneHandler = (taskIndex) => {
   console.log(`$({taskIndex} ${tasks[taskIndex].done}`);
 }
 
+const deleteHandler = (taskIndex) => {
+  const tasks = [...taskState.tasks];
+  tasks.splice(taskIndex, 1);
+  setTaskState({tasks});
+}
+
   return (
     <div className="Container">
       <h1>Tasky</h1>
@@ -32,6 +38,7 @@ const doneHandler = (taskIndex) => {
         priority={task.priority}
         markDone={() => doneHandler(index)}
         done={task.done}
+        deleteTask = {() => deleteHandler(index)}
         
         />
       ))}
