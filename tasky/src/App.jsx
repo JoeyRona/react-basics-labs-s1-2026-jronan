@@ -4,6 +4,10 @@ import React, { useState } from 'react';
 import AddTaskForm from './components/Form';
 import { useFormState } from 'react-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { Typography } from '@mui/material/Typography';
+import { Container } from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+
 
 
 function App() {
@@ -69,8 +73,35 @@ console.log(formState);
 
   return (
     <div className="Container">
-      <h1>Tasky</h1>
+      <Container components ="main">
+        <Typography
+          components="h1"
+          variant="h2"
+          align="centre"
+          gutterBottom
+          sx={{
+            backgroundColor: 'gray',
+            textAlign: 'center',
+            color: 'white',
+            padding: '20px',
+            margin: '20px 0 40px 0',
+            borderRadius: '4px'
 
+          }}
+          >
+            Tasky
+          </Typography>
+      </Container>
+
+
+<Container maxWidth="md" component="main">
+  <Grid
+    container
+    spacing={5}
+    sx={{
+        justifyContent: "center"
+        }}
+      >
       {taskState.tasks.map((task, index) => (
       <Task
         title={task.title}
@@ -84,7 +115,28 @@ console.log(formState);
         
         />
       ))}
-      <AddTaskForm submit={formSubmitHandler} change={formChangeHandler} />
+      </Grid> 
+      </Container>
+
+      <Container
+        component="footer"
+        sx={{
+          borderTop:(theme) => `1px solid ${theme.palette.divider}`,
+          my: 6,
+          py:6
+        }}
+         >
+          <Grid container sx={{
+            justifyContent: "center"
+          }}>
+           
+          </Grid>
+
+        </Container>
+
+      <AddTaskForm submit={formSubmitHandler} 
+                   change={formChangeHandler} 
+                   />
     </div>
   );
 }
