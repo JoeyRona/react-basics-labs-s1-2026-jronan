@@ -1,6 +1,6 @@
 import './App.css';
 import Task from './components/Task';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AddTaskForm from './components/Form';
 import { useFormState } from 'react-dom';
 import { v4 as uuidv4 } from 'uuid';
@@ -19,11 +19,13 @@ function App() {
     ]
 });
 
+
 const [ formState, setFormState ] = useState({
         title: "",
         description: "",
         deadline: ""
     });
+
 
 const doneHandler = (taskIndex) => {
   const tasks = [...taskState.tasks];
@@ -37,6 +39,8 @@ const deleteHandler = (taskIndex) => {
   tasks.splice(taskIndex, 1);
   setTaskState({tasks});
 }
+
+
 
 const formChangeHandler = (event) => {
   let form = {...formState};
@@ -56,6 +60,10 @@ const formChangeHandler = (event) => {
   }
   setFormState(form);
 }
+
+  console.log(formState);
+
+
 
 const formSubmitHandler = (event) => {
   event.preventDefault();
@@ -86,7 +94,6 @@ console.log(formState);
             padding: '20px',
             margin: '20px 0 40px 0',
             borderRadius: '4px'
-
           }}
           >
             Tasky
@@ -112,7 +119,6 @@ console.log(formState);
         markDone={() => doneHandler(index)}
         done={task.done}
         deleteTask = {() => deleteHandler(index)}
-        
         />
       ))}
       </Grid> 
@@ -123,20 +129,18 @@ console.log(formState);
         sx={{
           borderTop:(theme) => `1px solid ${theme.palette.divider}`,
           my: 6,
-          py:6
+          py: 6,
         }}
          >
           <Grid container sx={{
             justifyContent: "center"
           }}>
-           
-          </Grid>
-
-        </Container>
 
       <AddTaskForm submit={formSubmitHandler} 
                    change={formChangeHandler} 
                    />
+                    </Grid>
+        </Container>
     </div>
   );
 }

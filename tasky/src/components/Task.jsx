@@ -13,8 +13,9 @@ const Task = (props) => {
         key={props.id}
         size={{ xs: 12, md: 4 }}
         >
+       
 
-        <Card
+    <Card
         sx={{
             backgroundColor: props.done ? 'lightgrey' : 'lightblue',
             padding: '20px'
@@ -51,7 +52,7 @@ const Task = (props) => {
 
                      <Typography
                      component="p"
-                     variant='subtitle1'
+                     variant="subtitle1"
                      align="center"
                      sx={{ fontStyle: 'italic'}}
                      >
@@ -75,7 +76,7 @@ const Task = (props) => {
                   </Button>
 
                   <Button
-                  variant='contained'
+                  variant="contained"
                   size="small"
                   color="error"
                   onClick={props.deleteTask}
