@@ -8,6 +8,11 @@ import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+
+///////////////////////////////////////////////////
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
+///////////////////////////////////////////////////
+
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
@@ -17,13 +22,24 @@ import { Link } from "react-router";
 
 export default function MovieCard({ movie, action }) {
 
-  const { favorites, addToFavorites } = useContext(MoviesContext);
+  const { favorites, addToFavorites, mustWatches, addToWatchlist } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
   } else {
     movie.favorite = false
   }
+  ///////////////////////////////////////////////////
+  if (mustWatches.find((id) => id === movie.id)) {
+    movie.watchlist = true;
+  } else {
+    movie.watchlist = false;
+  }
+
+  const handleAddToWatchlist = (e) => {
+    e.preventDefault();
+    addToWatchlist(movie);
+  };
 
   const handleAddToFavorite = (e) => {
     e.preventDefault();
@@ -34,12 +50,19 @@ export default function MovieCard({ movie, action }) {
     <Card>
       <CardHeader
         avatar={
-          movie.favorite ? (
+          <>
+          {movie.favorite ? (
             <Avatar sx={{ backgroundColor: 'red' }}>
               <FavoriteIcon />
             </Avatar>
-          ) : null
-        }
+          ) : null}
+          {movie.watchlist ? (
+            <Avatar sx={{ backgroundColor: 'purple' }}>
+              <WatchLaterIcon />
+            </Avatar>
+          ) : null }
+        </>
+      }
         title={
           <Typography variant="h5" component="p">
             {movie.title}{" "}
@@ -79,8 +102,9 @@ export default function MovieCard({ movie, action }) {
             More Info ...
           </Button>
         </Link>
-        
       </CardActions>
-    </Card>
+      </Card>
+    //////////////
   );
 }
+
