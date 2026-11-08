@@ -12,6 +12,9 @@ import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import MoviesNowPlaying from "./pages/moviesNowPlaying";
 import WatchListPage from "./pages/watchListPage";
+import MovieRecommendationsPage from "./pages/movieRecommendationsPage";
+import SimilarMoviesPage from "./pages/similarMoviesPage";
+import theme from "./theme";
 
 
 const queryClient = new QueryClient({
