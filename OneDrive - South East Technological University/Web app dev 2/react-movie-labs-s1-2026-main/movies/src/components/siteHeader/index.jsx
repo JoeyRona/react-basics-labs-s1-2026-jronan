@@ -8,11 +8,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router";
-import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-
-const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -28,7 +25,8 @@ const SiteHeader = () => {
     { label: "Favorites", path: "/movies/favorites" },
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Playing Now", path: "/movies/moviesNowPlaying" },
-    { label: "Watch List", path: "/movies/watchListPage"},
+    { label: "Watch List", path: "/movies/watchlistPage"},
+    { label: "Top-Rated", path: "/movies/topRatedPage"}
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -48,7 +46,7 @@ const SiteHeader = () => {
             TMDB Client
           </Typography>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            All you ever wanted to know about Movies!
+            All you ever wanted to know about the throes of pedantic syntax errors!
           </Typography>
             {isMobile ? (
               <>
@@ -101,7 +99,9 @@ const SiteHeader = () => {
             )}
         </Toolbar>
       </AppBar>
-      <Offset />
+      {}
+      <Toolbar />
+
     </>
   );
 };
