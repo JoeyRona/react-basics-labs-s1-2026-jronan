@@ -15,6 +15,7 @@ import WatchListPage from "./pages/watchListPage";
 import MovieRecommendationsPage from "./pages/movieRecommendationsPage";
 import SimilarMoviesPage from "./pages/similarMoviesPage";
 import theme from "./theme";
+import CssBaseline from "@mui/material/CssBaseline";
 
 
 const queryClient = new QueryClient({
