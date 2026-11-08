@@ -14,3 +14,34 @@ const SimilarMoviesPage = () => {
     queryKey: ["movie", { id: id }],
     queryFn: getMovie,
   });
+const similarQuery = useQuery({
+    queryKey: ["similar", { id: id }],
+    queryFn: getSimilarMovies,
+  });
+
+  if (movieQuery.isPending || similarQuery.isPending) {
+    return <Spinner />;
+  }
+
+  if (movieQuery.isError) {
+    return <h1>{movieQuery.error.message}</h1>;
+  }
+  if (similarQuery.isError) {
+    return <h1>{similarQuery.error.message}</h1>;
+  }
+
+  return (
+    <PageTemplate
+      title={`Movies similar to "${movieQuery.data.title}"`}
+      movies={similarQuery.data}
+      action={(movie) => (
+        <>
+          <AddToFavoritesIcon movie={movie} />
+          <AddWatchlaterIcon movie={movie} />
+        </>
+      )}
+    />
+  );
+};
+
+export default SimilarMoviesPage;
