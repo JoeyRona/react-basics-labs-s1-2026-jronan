@@ -113,7 +113,6 @@ export const getMovieReviews = ({ queryKey }) => {
 
 
 //////////////////////////////////////////////////////////
-
 export const getMoviesNowPlaying = () => {
   return fetch(
    `https://api.themoviedb.org/3/movie/now_playing?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
@@ -121,9 +120,17 @@ export const getMoviesNowPlaying = () => {
     .then(res => res.json())
     .then(json => json.results);
 };
+
 //////////////////////////////////////////////////////////
 export const getMovieRecommendations = ({ queryKey }) =>
   fetchTMDB(
     `/movie/${idFromQueryKey(queryKey)}/recommendations`,
+    "&language=en-US&page=1"
+  ).then((json) => json.results);
+
+//////////////////////////////////////////////////////////
+export const getSimilarMovies = ({ queryKey }) =>
+  fetchTMDB(
+    `/movie/${idFromQueryKey(queryKey)}/similar`,
     "&language=en-US&page=1"
   ).then((json) => json.results);
