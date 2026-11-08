@@ -1,3 +1,19 @@
+const BASE_URL = "https://api.themoviedb.org/3";
+const API_KEY = import.meta.env.VITE_TMDB_KEY;
+
+const fetchTMDB = (path, params = "") => {
+  return fetch(`${BASE_URL}${path}?api_key=${API_KEY}${params}`).then(
+    (response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_message || "Something went wrong");
+        });
+      }
+      return response.json();
+    }
+  );
+};
+
 export const getMovies = () => {
   return fetch(
     `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
@@ -105,4 +121,9 @@ export const getMoviesNowPlaying = () => {
     .then(res => res.json())
     .then(json => json.results);
 };
-
+//////////////////////////////////////////////////////////
+export const getMovieRecommendations = ({ queryKey }) =>
+  fetchTMDB(
+    `/movie/${idFromQueryKey(queryKey)}/recommendations`,
+    "&language=en-US&page=1"
+  ).then((json) => json.results);
